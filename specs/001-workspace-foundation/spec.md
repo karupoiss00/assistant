@@ -1,6 +1,6 @@
 # Feature Specification: Workspace Foundation
 
-**Feature Branch**: `002-workspace-foundation`
+**Feature Branch**: `001-workspace-foundation`
 
 **Created**: 2026-06-08
 
