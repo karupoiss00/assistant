@@ -40,7 +40,19 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] Authoritative repository files and directories are identified; no durable
+      state is delegated to `runtime/` or undocumented storage.
+- [ ] Each planned mutation is classified as `auto-allowed`, `proposal-only`,
+      or `requires-confirmation`, with explicit rationale for any automatic
+      write.
+- [ ] The plan states which ritual(s) or planning horizon(s) the feature
+      improves and how it preserves cross-sphere balance.
+- [ ] Logging, retention, and operator audit paths are defined for every
+      state-changing flow and failure path.
+- [ ] Required contract updates are listed for schemas, prompts, config, and
+      repository note formats.
+- [ ] Validation covers both user-visible behavior and resulting repository
+      mutations.
 
 ## Project Structure
 

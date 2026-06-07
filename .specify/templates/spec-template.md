@@ -103,6 +103,26 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+## Repository Impact *(mandatory for stateful features)*
+
+- **Authoritative Files**: [List the repository files/directories that become or
+  remain the source of truth]
+- **Derived/Ephemeral State**: [List caches, runtime files, or generated output;
+  use `N/A` if none]
+- **Link Integrity**: [Describe how links between task, month, year, and
+  long-term goals are preserved or changed]
+
+## Autonomy & Confirmation Boundaries *(mandatory)*
+
+- **Auto-Allowed Actions**: [List writes the assistant may perform without
+  prompting the user]
+- **Proposal-Only Actions**: [List suggestions the assistant may prepare but not
+  apply]
+- **Requires-Confirmation Actions**: [List destructive, strategic, or
+  irreversible actions]
+- **User Notification**: [Describe how applied changes are reported back to the
+  user]
+
 ## Success Criteria *(mandatory)*
 
 <!--
@@ -129,3 +149,11 @@
 - [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
 - [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
 - [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+
+## Observability & Audit *(mandatory for state-changing features)*
+
+- **Events Logged**: [User request, assistant proposal, file mutation,
+  carry-over, reprioritization, errors]
+- **Traceability**: [How a Telegram interaction or operator action maps to log
+  records and repository changes]
+- **Retention / Review Path**: [How logs are retained and inspected]
