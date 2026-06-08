@@ -170,6 +170,10 @@ audit trail для дальнейшей работы.
   Telegram-событием.
 - **FR-015**: Система MUST сохранять историю capture-событий минимум 30 дней в
   репозиторных журналах.
+- **FR-016**: Система MUST использовать заранее зафиксированные относительные
+  пути внутри production workspace для daily inbox, capture audit logs и
+  capture configuration, чтобы runtime не выводил durable write targets
+  эвристически.
 
 ### Key Entities *(include if feature involves data)*
 

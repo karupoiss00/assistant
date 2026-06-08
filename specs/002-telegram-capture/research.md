@@ -62,13 +62,28 @@
   - Store only inbox content without event logs: rejected because retries and
     failures would be hard to audit.
 
-## Open Technical Runtime Constraints
+## Decision 6: Fix the Stage 2 runtime as a Go webhook service
 
-- **Decision**: Leave the exact implementation language/runtime open for the
-  planning artifact, marking it as an explicit clarification for the next
-  execution layer if no existing stack is chosen in the repository.
-- **Rationale**: The current repo contains contracts and planning artifacts, but
-  no committed Telegram service implementation to anchor a precise stack choice.
+- **Decision**: Implement Stage 2 as a long-running Go webhook service rather
+  than a polling worker or an always-on Codex runtime.
+- **Rationale**: The feature spec already requires a webhook-based minimum
+  deployable runtime, and fixing that choice now removes ambiguity around
+  delivery semantics, retries, deployment shape, and validation strategy.
 - **Alternatives considered**:
-  - Force a stack now: rejected because it would invent constraints not present
-    in the current codebase.
+  - Polling worker: rejected because it conflicts with the accepted Stage 2
+    webhook requirement and would alter retry and latency behavior.
+  - Always-on Codex runtime: rejected because Stage 2 only needs a narrow
+    capture service and should not depend on a broader orchestration layer.
+
+## Decision 7: Use explicit workspace paths and append-only capture writes
+
+- **Decision**: The runtime writes to explicit relative paths inside the
+  production workspace, using append-only inbox and audit records as the
+  durable capture surface.
+- **Rationale**: This keeps the capture layer Obsidian-readable, preserves
+  traceability, and removes ambiguity about which files change for each input.
+- **Alternatives considered**:
+  - Derive paths heuristically from local examples: rejected because `.workspace/`
+    is only a reference example.
+  - Store transcript or retry state only in runtime memory: rejected because it
+    would violate the repository-first durability rule.

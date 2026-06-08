@@ -52,6 +52,20 @@ daily inbox files, capture logs, webhook intake, transcription flow,
 retry-safe processing, and basic deployment-readiness for the first live
 Telegram milestone
 
+## Runtime Topology
+
+- **Ingress**: Telegram delivers updates to a server-side webhook endpoint
+  exposed by the Stage 2 service.
+- **Runtime**: A long-running Go service receives updates, validates supported
+  message kinds, writes durable capture state, performs voice transcription, and
+  returns Telegram-facing statuses.
+- **Durable Write Target**: A separately configured production
+  Obsidian-compatible workspace Git repository.
+- **Ephemeral Processing**: Temporary voice downloads live only under `runtime/`
+  during processing and are deleted after success or failure handling.
+- **External Dependency**: OpenAI speech-to-text is used only for voice
+  transcription and does not become a source of truth.
+
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
@@ -139,8 +153,8 @@ temporary voice downloads in `runtime/` only.
 
 ### Research Output
 
-- [research.md](./research.md) resolves delivery mode, capture storage shape,
-  transcription lifecycle, and failure-handling strategy.
+- [research.md](./research.md) resolves webhook delivery, capture storage
+  shape, transcription lifecycle, and failure-handling strategy.
 
 ## Phase 1: Design & Contracts
 
@@ -201,6 +215,8 @@ temporary voice downloads in `runtime/` only.
   contract without breaking Stage 1 source-of-truth boundaries.
 - Webhook runtime contract: define the minimum live intake path from Telegram
   webhook to repository mutation, user reply, and temporary-file cleanup.
+- Concrete source paths: define the initial Go module, runtime entrypoint, and
+  internal package layout used by implementation tasks.
 
 ### Validation Strategy
 

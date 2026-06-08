@@ -12,6 +12,9 @@
 - предложенные, но не выполненные изменения
 - действия, требующие подтверждения, и их итоговое решение
 - ошибки нормализации и пропущенные пути
+- Stage 2 capture events: `received`, `buffered`, `transcription_started`,
+  `transcription_failed`, `transcription_succeeded`, `cleanup_completed`,
+  `retry_requested`, `repeat_detected`, `workspace_write_failed`
 
 ## Обязательные поля
 
@@ -27,6 +30,10 @@
 - `autonomy_class`: `auto-allowed`, `proposal-only`,
   `requires-confirmation`
 - `status`: `executed`, `proposed`, `confirmed`, `rejected`, `failed`
+- `telegram_update_id`: корреляция с Telegram intake, если событие относится к
+  capture-слою
+- `entry_id`: идентификатор durable inbox entry, если применимо
+- `attempt_id`: идентификатор processing attempt, если применимо
 
 ## Чеклист Проверки Отчета Нормализации
 
@@ -42,6 +49,8 @@
 - Контракт логов должен оставаться проверяемым без чтения runtime-кода.
 - Git history — это дополнительное audit-доказательство, а не замена
   семантическим log records.
+- Для Stage 2 capture append-only audit log в production workspace считается
+  канонической операционной записью, а этот файл фиксирует его contract shape.
 
 ## Ожидания Оператора
 

@@ -24,12 +24,14 @@
   calendar day are appended.
 - **Fields**:
   - `date_key`
+  - `relative_path`
   - `entries`: ordered list of capture buffer entries
   - `entry_count`
 - **Validation Rules**:
   - One active daily inbox file per day
   - Entries must retain order of accepted capture events
   - Daily inbox content remains readable from Obsidian
+  - The file path must follow `System/Inbox/YYYY/MM/YYYY-MM-DD.md`
 
 ## Capture Buffer Entry
 
@@ -37,10 +39,11 @@
 - **Fields**:
   - `entry_id`
   - `telegram_update_id`
+  - `telegram_message_id`
   - `message_kind`
   - `stored_text`
   - `transcript_text`: optional
-  - `metadata_ref`
+  - `receive_timestamp`
   - `processing_status`
   - `created_at`
 - **Validation Rules**:
@@ -54,6 +57,7 @@
 - **Fields**:
   - `attempt_id`
   - `entry_id`
+  - `telegram_update_id`
   - `started_at`
   - `finished_at`
   - `outcome`: `success`, `failure`
@@ -87,9 +91,10 @@
   - `audit_id`
   - `telegram_update_id`
   - `entry_id`
+  - `attempt_id`: optional
   - `event_type`: `received`, `buffered`, `transcription_started`,
     `transcription_failed`, `transcription_succeeded`, `cleanup_completed`,
-    `retry_requested`
+    `retry_requested`, `repeat_detected`, `workspace_write_failed`
   - `event_timestamp`
   - `summary`
 - **Validation Rules**:
@@ -101,7 +106,11 @@
 - **Description**: Repository-managed configuration governing Telegram capture.
 - **Fields**:
   - `telegram_capture_enabled`
+  - `telegram_webhook_path`
+  - `workspace_root_path`
+  - `assistant_config_path`
   - `daily_inbox_path_pattern`
+  - `capture_audit_log_path_pattern`
   - `log_retention_days`
   - `voice_transcription_required_for_confirmation`
   - `temporary_voice_cleanup_policy`
@@ -109,3 +118,7 @@
   - `log_retention_days >= 30`
   - `voice_transcription_required_for_confirmation` is `true` for Stage 2
   - `temporary_voice_cleanup_policy` must define deletion after processing
+  - `assistant_config_path` resolves to `System/assistant-config.yaml`
+  - `daily_inbox_path_pattern` resolves to `System/Inbox/YYYY/MM/YYYY-MM-DD.md`
+  - `capture_audit_log_path_pattern` resolves to
+    `System/Logs/telegram-capture/YYYY/MM/YYYY-MM-DD.ndjson`

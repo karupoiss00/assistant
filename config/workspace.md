@@ -16,6 +16,19 @@ Obsidian-workspace, с которым работает ассистент.
 - `runtime/` может содержать временные execution artifacts, но никогда не
   является источником истины.
 
+## Stage 2 Capture Anchors
+
+Stage 2 capture writes durable state into explicit locations inside the
+production workspace repository:
+
+- `System/assistant-config.yaml` - runtime-readable assistant configuration
+- `System/Inbox/YYYY/MM/YYYY-MM-DD.md` - daily capture inbox
+- `System/Logs/telegram-capture/YYYY/MM/YYYY-MM-DD.ndjson` - append-only audit
+  stream for capture events
+
+Stage 2 runtime MUST use these anchors explicitly and MUST NOT derive durable
+write targets from `.workspace/` or other local examples.
+
 ## Обязательная структура `v1`
 
 ### Обязательные сферы

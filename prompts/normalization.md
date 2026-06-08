@@ -12,6 +12,7 @@
 - текущие правила автономности
 - репозиторные места назначения для log/report
 - явное состояние подтверждения для любых gated changes
+- правила Stage 2 capture storage anchors и user-visible status semantics
 
 ## Проверка Управления Промптом
 
@@ -22,6 +23,8 @@
 - [x] Промпт должен сохранять пользовательские top-level сферы и user-authored notes
 - [x] Промпт должен различать `auto-allowed`, `proposal-only` и
       `requires-confirmation` до любого write
+- [x] Capture follow-up действия должны различать transport acceptance,
+      durable save, failure-aware reply и understood state
 
 ## Правила Safe-Structure
 
@@ -39,6 +42,8 @@
 - переписывать или заменять настройки и layout-файлы `.obsidian/`
 - переносить пользовательские файлы между сферами
 - менять существующий пользовательский смысл через semantic rewrites
+- автоматически сливать похожие capture entries или скрывать их из-за
+  эвристической дедупликации
 
 ## Обязательная Форма Выхода
 
