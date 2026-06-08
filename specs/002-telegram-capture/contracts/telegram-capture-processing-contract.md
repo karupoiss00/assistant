@@ -55,6 +55,18 @@ Define the Stage 2 processing flow for text and voice capture.
 - `not durably saved`: the transport path may have succeeded, but the workspace
   was not updated correctly.
 
+## Definition Of Basic Understanding
+
+- Stage 2 does not require full semantic classification to mark a voice input as
+  understood.
+- `basic understanding` is reached only when:
+  - transcript text is non-empty;
+  - transcript text is durably persisted into the inbox entry;
+  - the user-facing reply can acknowledge that the message was captured and
+    transcribed using a deterministic confirmation format.
+- A transcript that is empty, missing, or not durably written cannot be treated
+  as understood.
+
 ## Deduplication Posture
 
 - Stage 2 does not perform aggressive semantic deduplication.

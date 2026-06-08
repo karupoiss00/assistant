@@ -50,8 +50,8 @@ loop and preserves repository-backed durable state.
 2. Review [checklists/implementation.md](./checklists/implementation.md) and
    confirm text success depends on durable save rather than early transport
    acknowledgment.
-3. Review [tasks.md](./tasks.md) and confirm runtime bootstrap tasks isolate the
-   path where latency instrumentation will later be added.
+3. Review [tasks.md](./tasks.md) and confirm there is an explicit task to record
+   latency results against the 95% / 10-second target.
 
 **Expected outcome**:
 - Text latency validation has an explicit target and an implementation surface.
@@ -91,9 +91,12 @@ loop and preserves repository-backed durable state.
 2. Confirm the processing contract requires transcription before final success.
 3. Confirm the implementation checklist makes transcript persistence and cleanup
    part of completion.
+4. Confirm the Stage 2 definition of `basic understanding` is narrow and
+   testable.
 
 **Expected outcome**:
 - Voice latency is treated as a measured contract, not a best-effort note.
+- Voice success semantics are testable without requiring full semantic routing.
 
 ## Scenario 3: Validate failure and retry safety
 

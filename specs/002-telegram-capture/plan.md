@@ -108,8 +108,16 @@ specs/002-telegram-capture/
 
 ```text
 .workspace/                         # Reference workspace example only
-cmd/                                # Go runtime entrypoints to be introduced during implementation
-internal/                           # Go runtime packages to be introduced during implementation
+cmd/
+└── telegram-capture/
+    └── main.go                     # Stage 2 webhook runtime entrypoint bootstrap
+internal/
+├── audit/                          # Append-only capture audit writing
+├── capture/                        # Text/voice capture orchestration
+├── config/                         # Runtime configuration loading and validation
+├── telegram/                       # Webhook payload parsing and HTTP handlers
+├── transcribe/                     # Speech-to-text client abstraction
+└── workspace/                      # Daily inbox and workspace write layer
 config/
 ├── README.md
 ├── defaults.md
@@ -131,6 +139,7 @@ specs/
 └── 002-telegram-capture/
 AGENTS.md
 SPEC.md
+go.mod
 ```
 
 **Structure Decision**: Stage 2 still formalizes Telegram capture behavior
@@ -138,6 +147,10 @@ through explicit repository contracts, but it also requires a minimal live
 runtime slice: a Go-based webhook service that receives updates, persists
 durable state, triggers transcription, returns user-visible statuses, and keeps
 temporary voice downloads in `runtime/` only.
+
+**Implementation Status Note**: The runtime bootstrap now exists as a minimal Go
+module and package skeleton. User story implementation work should extend these
+paths rather than re-deciding the code layout during kickoff.
 
 ## Phase 0: Research
 

@@ -169,6 +169,7 @@
 - [ ] T059 [P] Review repository-first, retention, webhook, and cleanup wording across config/workspace.md, logs/action-log.md, prompts/normalization.md, and runtime/README.md
 - [ ] T060 [P] Run the end-to-end contract and webhook walkthrough and record results in specs/002-telegram-capture/checklists/implementation.md
 - [ ] T061 Validate all quickstart scenarios, including text durability, voice cleanup, burst handling, retry traceability, webhook smoke behavior, and latency checks, against the final artifact set in specs/002-telegram-capture/quickstart.md
+- [ ] T062 [P] Record webhook-to-user-reply latency measurements for text and voice flows and evaluate the 95% / 10-second target in specs/002-telegram-capture/checklists/implementation.md
 
 ---
 
@@ -212,7 +213,7 @@
 ```bash
 Task: "Add a checklist section for text capture durability and one-update-to-one-entry mapping in specs/002-telegram-capture/checklists/implementation.md"
 Task: "Add a quickstart scenario for text capture confirmation and repository verification in specs/002-telegram-capture/quickstart.md"
-Task: "Add a contract consistency review section for daily inbox grouping and separate audit logs in specs/002-telegram-capture/research.md"
+Task: "Add a webhook smoke-validation scenario for text capture intake in specs/002-telegram-capture/quickstart.md"
 ```
 
 ```bash
@@ -268,15 +269,16 @@ Task: "Document capture audit record, retry attempt, repeat-activity, and reposi
 
 ### Incremental Delivery
 
-1. Complete Setup + Foundational to establish repo-level capture contracts
-2. Deliver User Story 1 and validate daily inbox durability
-3. Deliver User Story 2 and validate voice transcription plus cleanup behavior
-4. Deliver User Story 3 and validate burst/retry auditability
-5. Finish with cross-cutting consistency review
+1. Complete Contract Cleanup + Foundational Contracts to establish repo-level capture contracts
+2. Complete Runtime Bootstrap so implementation targets concrete Go package paths
+3. Deliver User Story 1 and validate daily inbox durability
+4. Deliver User Story 2 and validate voice transcription plus cleanup behavior
+5. Deliver User Story 3 and validate burst/retry auditability
+6. Finish with cross-cutting consistency review
 
 ### Parallel Team Strategy
 
-1. One person completes Setup + Foundational
+1. One person completes Contract Cleanup + Foundational Contracts + Runtime Bootstrap
 2. After that:
    - Developer A: User Story 1
    - Developer B: User Story 2

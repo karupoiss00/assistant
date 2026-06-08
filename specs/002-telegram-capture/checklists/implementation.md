@@ -23,6 +23,9 @@ Use this checklist during implementation and final validation of Stage 2.
       `transcription_succeeded`, and `cleanup_completed`.
 - [ ] User-visible success for voice is sent only after transcript persistence
       and audit writes succeed.
+- [ ] Voice success uses the Stage 2 definition of `basic understanding`:
+      non-empty transcript plus deterministic confirmation wording, without
+      requiring semantic classification.
 
 ## Voice Failure Handling
 
@@ -59,3 +62,12 @@ Use this checklist during implementation and final validation of Stage 2.
 - [ ] `cmd/telegram-capture/` contains the runtime entrypoint.
 - [ ] Internal package boundaries exist for config, Telegram intake, capture
       writes, audit logging, transcription, and workspace access.
+
+## Latency Validation
+
+- [ ] Validation records the elapsed time from webhook receipt to user-visible
+      text success reply.
+- [ ] Validation records the elapsed time from webhook receipt to user-visible
+      voice success reply.
+- [ ] The result set is sufficient to verify whether at least 95% of checked
+      cases complete within 10 seconds.
