@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+VAULT_DIR="${1:-$HOME/assistant/vault}"
+
+mkdir -p \
+  "${VAULT_DIR}/00-inbox" \
+  "${VAULT_DIR}/10-daily" \
+  "${VAULT_DIR}/15-weekly" \
+  "${VAULT_DIR}/20-areas" \
+  "${VAULT_DIR}/30-projects" \
+  "${VAULT_DIR}/40-knowledge" \
+  "${VAULT_DIR}/50-goals" \
+  "${VAULT_DIR}/90-archive"
+
+touch "${VAULT_DIR}/10-daily/.gitkeep"
+touch "${VAULT_DIR}/15-weekly/.gitkeep"
+touch "${VAULT_DIR}/30-projects/.gitkeep"
+touch "${VAULT_DIR}/40-knowledge/.gitkeep"
+touch "${VAULT_DIR}/90-archive/.gitkeep"
+
+cat > "${VAULT_DIR}/00-inbox/inbox.md" <<'EOF'
+# Inbox
+
+## Unprocessed
+
+## Processed
+EOF
+
+cat > "${VAULT_DIR}/20-areas/work.md" <<'EOF'
+# Work
+EOF
+
+cat > "${VAULT_DIR}/20-areas/home.md" <<'EOF'
+# Home
+EOF
+
+cat > "${VAULT_DIR}/20-areas/car.md" <<'EOF'
+# Car
+EOF
+
+cat > "${VAULT_DIR}/20-areas/relationships.md" <<'EOF'
+# Relationships
+EOF
+
+cat > "${VAULT_DIR}/50-goals/yearly.md" <<'EOF'
+# Yearly Goals
+EOF
+
+cat > "${VAULT_DIR}/50-goals/quarterly.md" <<'EOF'
+# Quarterly Goals
+EOF
+
+cat > "${VAULT_DIR}/50-goals/monthly.md" <<'EOF'
+# Monthly Goals
+EOF
+
+echo "Vault bootstrap complete at ${VAULT_DIR}"

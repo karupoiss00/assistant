@@ -1,0 +1,20 @@
+{
+  "vaultPath": "/home/USER/assistant/vault",
+  "pendingPath": "/home/USER/assistant/pending",
+  "logsPath": "/home/USER/assistant/logs",
+  "inboxFile": "00-inbox/inbox.md",
+  "dailyDir": "10-daily",
+  "weeklyDir": "15-weekly",
+  "areasDir": "20-areas",
+  "projectsDir": "30-projects",
+  "knowledgeDir": "40-knowledge",
+  "timezone": "Europe/Moscow",
+  "telegramAllowedUserIds": ["REPLACE_WITH_NUMERIC_TELEGRAM_USER_ID"],
+  "morningPlanTime": "09:00",
+  "eveningShutdownTime": "22:30",
+  "weeklyReviewTime": "Sunday 20:00",
+  "maxMainFocusTasks": 3,
+  "maxSuggestedTasksPerDay": 7,
+  "requireConfirmationForMassChanges": true,
+  "requireConfirmationForDelete": true
+}
